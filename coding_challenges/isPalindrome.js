@@ -2,16 +2,11 @@
 // Ejemplo: "reconocer" → true, "chat" → false.
 
 function isPalindrome(word) {
-
-  let reverseIndex = word.length;
-
-  for (let index = 0; index < word.length; index++) {
-    // console.log("comparando " + word[index] + " con " + word[reverseIndex - 1]);
-    if (word[index] != word[reverseIndex - 1]) {
+  for (let index = 0; index < Math.floor(word.length / 2); index++) {
+    if (word[index] !== word[word.length - 1 - index]) {
       // console.log("no es palindromo");
       return false
     }
-    reverseIndex -= 1
   }
   // console.log("si es palindromo");
   return true
