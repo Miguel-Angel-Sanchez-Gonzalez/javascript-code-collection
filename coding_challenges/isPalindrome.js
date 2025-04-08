@@ -6,19 +6,16 @@ function isPalindrome(word) {
   let reverseIndex = word.length;
 
   for (let index = 0; index < word.length; index++) {
-
     // console.log("comparando " + word[index] + " con " + word[reverseIndex - 1]);
     if (word[index] != word[reverseIndex - 1]) {
-      console.log("no es palindromo");
+      // console.log("no es palindromo");
       return false
     }
-    
     reverseIndex -= 1
   }
-
-  console.log("si es palindromo");
+  // console.log("si es palindromo");
   return true
 }
-
-
-isPalindrome("reconocer")
+// Test cases
+console.log(isPalindrome("reconocer"));
+console.log(isPalindrome("chat"));
