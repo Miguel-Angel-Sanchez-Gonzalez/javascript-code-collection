@@ -9,8 +9,6 @@ function mostCharFrecuent(word) {
     result[char] = (result[char] || 0) + 1;
   }
 
-  // console.log(result);
-
   let max_value = 0;
   let max_char = "";
 
@@ -28,4 +26,5 @@ function mostCharFrecuent(word) {
   return max_char;
 }
 
+// Test case
 console.log(mostCharFrecuent("javascript"));
