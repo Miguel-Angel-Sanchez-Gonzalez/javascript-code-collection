@@ -19,35 +19,22 @@ const comentarios = [
 
 function obtenerPostPorId(id) {
   return new Promise((resolved, reject) => {
-    let resultPost = null;
     setTimeout(() => {
-      for (const post of posts) {
-        if (post.id === id) {
-          resultPost = post;
-          resolved(resultPost);
-          return;
-        }
-      }
-      reject(new Error("Post no encontrado"));
+      const resultPost = posts.find((p) => p.id === id);
+      resultPost
+        ? resolved(resultPost)
+        : reject(new Error("Post no encontrado"));
     }, 1000);
   });
 }
 
 function obtenerComentariosDePost(id) {
   return new Promise((resolve, reject) => {
-    let resultComments = [];
     setTimeout(() => {
-      for (const comment of comentarios) {
-        if (comment.postId === id) {
-          resultComments.push(comment);
-        }
-      }
-
-      if (resultComments.length > 0) {
-        resolve(resultComments);
-      } else {
-        reject(new Error("No existen comentarios para este post"));
-      }
+      const filterComments = comentarios.filter((c) => c.postId === id);
+      filterComments.length > 0
+        ? resolve(filterComments)
+        : reject(reject(new Error("No existen comentarios para este post")));
     }, 1000);
   });
 }
