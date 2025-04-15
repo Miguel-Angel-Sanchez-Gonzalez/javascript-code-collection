@@ -34,7 +34,7 @@ function obtenerComentariosDePost(id) {
       const filterComments = comentarios.filter((c) => c.postId === id);
       filterComments.length > 0
         ? resolve(filterComments)
-        : reject(reject(new Error("No existen comentarios para este post")));
+        : reject(new Error("No existen comentarios para este post"));
     }, 1000);
   });
 }
