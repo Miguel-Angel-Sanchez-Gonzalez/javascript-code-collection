@@ -15,3 +15,10 @@ export function preparationTimeInMinutes(numberOfLayers) {
 export function totalTimeInMinutes(numberOfLayers, actualMinutesInOven) {
   return preparationTimeInMinutes(numberOfLayers) + actualMinutesInOven;
 }
+
+// Test cases
+console.log(remainingMinutesInOven(20));
+
+console.log(preparationTimeInMinutes(5));
+
+console.log(totalTimeInMinutes(3, 35));
