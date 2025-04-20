@@ -6,7 +6,7 @@ export function dayRate(ratePerHour) {
 }
 
 export function daysInBudget(budget, ratePerHour) {
-  return Math.round(budget / (ratePerHour * 8));
+  return Math.floor(budget / (ratePerHour * 8));
 }
 
 export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
@@ -19,7 +19,7 @@ export function priceWithMonthlyDiscount(ratePerHour, numDays, discount) {
   const numDaysWithoutDiscount = numDays - numDaysWithDiscount;
   const priceNormal = numDaysWithoutDiscount * ratePerDay;
 
-  return priceDiscount + priceNormal;
+  return Math.ceil(priceDiscount + priceNormal);
 }
 
 // Test cases
