@@ -1,3 +1,6 @@
+// Solución al ejercicio de Exercism: "Freelancer Rates"
+// Enunciado tomado de Exercism.org
+
 export function dayRate(ratePerHour) {
   return ratePerHour * 8;
 }
