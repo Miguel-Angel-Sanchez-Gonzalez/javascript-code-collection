@@ -17,16 +17,11 @@ const usuarios = [
 ];
 
 function registrarUsuarios(listaUsuarios) {
-  const clean_usuarios = [];
-  listaUsuarios.forEach((usuario) => {
-    let nombre = usuario.nombre;
-    nombre = nombre ?? "invitado";
-    let edad = usuario.edad;
-    edad = edad ?? 0;
-    let cleanUser = { nombre: nombre, edad: edad };
-    clean_usuarios.push(cleanUser);
-  });
-  console.log(clean_usuarios);
+  const usuarios_registrados = listaUsuarios.map((usuario) => ({
+    nombre: usuario.nombre ?? "invitado",
+    edad: usuario.edad ?? 0,
+  }));
+  return usuarios_registrados;
 }
 
-registrarUsuarios(usuarios);
+console.log(registrarUsuarios(usuarios));
