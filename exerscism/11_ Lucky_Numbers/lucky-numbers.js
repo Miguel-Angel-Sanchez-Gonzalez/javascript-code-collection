@@ -19,15 +19,15 @@ export function luckyNumber(value) {
 }
 
 export function errorMessage(input) {
-  if (input) {
+  if (!input) {
+    return "Required field";
+  } else {
     let result = Number(input);
     if (!result) {
       return "Must be a number besides 0";
     } else {
       return "";
     }
-  } else {
-    return "Required field";
   }
 }
 
