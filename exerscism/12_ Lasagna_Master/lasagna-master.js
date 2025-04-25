@@ -63,22 +63,25 @@ console.log(friendsList);
 console.log(myList);
 
 function scaleRecipe(recipe, amount) {
-  const finalAmount = amount - 2;
   const tightRecipe = { ...recipe };
   for (const key in tightRecipe) {
-    tightRecipe[key] = tightRecipe[key] * finalAmount;
+    tightRecipe[key] = tightRecipe[key] / 2;
+  }
+  for (const key in tightRecipe) {
+    tightRecipe[key] = tightRecipe[key] * amount;
   }
 
   return tightRecipe;
 }
 
 // Test cases
-const recipe = {
-  noodles: 200,
+const recipe1 = {
   sauce: 0.5,
-  mozzarella: 1,
-  meat: 100,
+  noodles: 250,
+  meat: 150,
+  tomatoes: 3,
+  onion: 0.5,
 };
 
-console.log(scaleRecipe(recipe, 4));
-console.log(recipe);
+console.log(scaleRecipe(recipe1, 6));
+// console.log(recipe1);
