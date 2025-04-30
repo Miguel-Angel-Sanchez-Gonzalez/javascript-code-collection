@@ -14,7 +14,7 @@ export function threeOfEachThree(deck) {
   const finalDeck = deck.reduce(
     (acc, val) => {
       if (val === 3) {
-        acc.result.push("3", "3", "3");
+        acc.result.push(3, 3, 3);
       } else {
         acc.result.push(val);
       }
@@ -47,12 +47,12 @@ export function sandwichTrick(deck) {
   deck.splice(deck.length / 2, 0, switchCards[0]);
   deck.splice(deck.length / 2 + 1, 0, switchCards[1]);
 
-  console.log(deck);
+  return deck;
 }
 
 // Test case 4
-const deck4 = [1, 2, 3, 5, 6, 10];
-sandwichTrick(deck4);
+const deck4 = [1, 6, 7, 7, 2, 1];
+console.log(sandwichTrick(deck4));
 
 export function twoIsSpecial(deck) {
   const numTwos = deck.filter((card) => card === 2);
