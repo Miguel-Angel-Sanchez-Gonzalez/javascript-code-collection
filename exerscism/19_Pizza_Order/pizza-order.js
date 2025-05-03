@@ -1,3 +1,6 @@
+// Solución al ejercicio de Exercism: "Pizza Order"
+// Enunciado tomado de Exercism.org
+
 export function pizzaPrice(pizza, ...extras) {
   let basePrice = 0;
   switch (pizza) {
@@ -29,6 +32,7 @@ export function pizzaPrice(pizza, ...extras) {
   return basePrice + sumExtras(extras);
 }
 
+// Test cases
 console.log(pizzaPrice("Margherita"));
 console.log(pizzaPrice("Caprese", "ExtraSauce", "ExtraToppings"));
 console.log(
@@ -51,3 +55,19 @@ export function orderPrice(pizzaOrders) {
 
   return totalPrice;
 }
+
+// Test cases
+class PizzaOrder {
+  constructor(pizza, ...extras) {
+    this.pizza = pizza;
+    this.extras = extras;
+  }
+}
+
+const order1 = new PizzaOrder("Margherita"); // $7
+const order2 = new PizzaOrder("Caprese", "ExtraSauce"); // $9 + $1 = $10
+const order3 = new PizzaOrder("Formaggio", "ExtraToppings", "ExtraToppings"); // $10 + $2 + $2 = $14
+
+const total = orderPrice([order1, order2, order3]);
+
+console.log(total); // 7 + 10 + 14 = 31
