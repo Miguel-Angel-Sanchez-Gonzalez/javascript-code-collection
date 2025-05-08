@@ -21,38 +21,37 @@ export class TranslationService {
       });
   }
 
-  /**
-   * Requests the service for some text to be translated.
-   *
-   * Note: the request service is flaky, and it may take up to three times for
-   *       it to accept the request.
-   *
-   * @param {string} text
-   * @returns {Promise<void>}
-   */
   request(text) {
-    throw new Error("Implement the request function");
+    const maxRetries = 3;
+    let attempts = 0;
+
+    const attemptRequest = () => {
+      attempts++;
+      return new Promise((resolve, reject) => {
+        this.api.request(text, (error) => {
+          if (error === undefined) {
+            resolve(undefined);
+          } else if (
+            error instanceof Error &&
+            attempts < maxRetries &&
+            error.name !== "Untranslatable"
+          ) {
+            attemptRequest().then(resolve, reject); // Llamada recursiva
+          } else {
+            reject(error);
+          }
+        });
+      });
+    };
+
+    return attemptRequest();
   }
 
-  /**
-   * Retrieves the translation for the given text
-   *
-   * - Rejects with an error if the quality can not be met
-   * - Requests a translation if the translation is not available, then retries
-   *
-   * @param {string} text
-   * @param {number} minimumQuality
-   * @returns {Promise<string>}
-   */
   premium(text, minimumQuality) {
     throw new Error("Implement the premium function");
   }
 }
 
-/**
- * This error is used to indicate a translation was found, but its quality does
- * not meet a certain threshold. Do not change the name of this error.
- */
 export class QualityThresholdNotMet extends Error {
   /**
    * @param {string} text
@@ -68,10 +67,6 @@ The translation of ${text} does not meet the requested quality threshold.
   }
 }
 
-/**
- * This error is used to indicate the batch service was called without any
- * texts to translate (it was empty). Do not change the name of this error.
- */
 export class BatchIsEmpty extends Error {
   constructor() {
     super(
