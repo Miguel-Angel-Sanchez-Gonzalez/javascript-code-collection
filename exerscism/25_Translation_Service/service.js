@@ -48,7 +48,32 @@ export class TranslationService {
   }
 
   premium(text, minimumQuality) {
-    throw new Error("Implement the premium function");
+    return this.api
+      .fetch(text)
+      .then((result) => {
+        if (result.quality < minimumQuality) {
+          return Promise.reject(new QualityThresholdNotMet(text));
+        } else {
+          return result.translation;
+        }
+      })
+      .catch((error) => {
+        if (error instanceof Error && error.name === "Untranslatable") {
+          return Promise.reject(new Untranslatable(text));
+        } else if (error.name === "NotAvailable") {
+          return this.request(text).then(() => {
+            return this.api.fetch(text).then((result) => {
+              if (result.quality < minimumQuality) {
+                return Promise.reject(new QualityThresholdNotMet(text));
+              } else {
+                return result.translation;
+              }
+            });
+          });
+        } else {
+          return Promise.reject(error);
+        }
+      });
   }
 }
 
