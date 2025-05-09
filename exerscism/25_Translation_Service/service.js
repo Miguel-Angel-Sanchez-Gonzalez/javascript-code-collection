@@ -1,6 +1,9 @@
+// Solución al ejercicio de Exercism: "Translation Service"
+// Enunciado tomado de Exercism.orgAS
 export class TranslationService {
   constructor(api) {
     this.api = api;
+    W;
   }
 
   free(text) {
@@ -12,7 +15,7 @@ export class TranslationService {
       return Promise.reject(new BatchIsEmpty());
     }
 
-    return Promise.all(texts.map((text) => this.api.free(text)))
+    return Promise.all(texts.map((text) => this.free(text)))
       .then((translations) => {
         return translations;
       })
@@ -50,29 +53,13 @@ export class TranslationService {
   premium(text, minimumQuality) {
     return this.api
       .fetch(text)
-      .then((result) => {
-        if (result.quality < minimumQuality) {
-          return Promise.reject(new QualityThresholdNotMet(text));
-        } else {
-          return result.translation;
-        }
+      .catch(() => {
+        return this.request(text).then(() => this.api.fetch(text));
       })
-      .catch((error) => {
-        if (error instanceof Error && error.name === "Untranslatable") {
-          return Promise.reject(new Untranslatable(text));
-        } else if (error.name === "NotAvailable") {
-          return this.request(text).then(() => {
-            return this.api.fetch(text).then((result) => {
-              if (result.quality < minimumQuality) {
-                return Promise.reject(new QualityThresholdNotMet(text));
-              } else {
-                return result.translation;
-              }
-            });
-          });
-        } else {
-          return Promise.reject(error);
-        }
+      .then((res) => {
+        if (res.quality < minimumQuality)
+          throw new QualityThresholdNotMet(text);
+        return res.translation;
       });
   }
 }
