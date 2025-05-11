@@ -47,5 +47,10 @@ export function getURL(userInput) {
 console.log(getURL("I learned a lot from exercism.org"));
 
 export function niceToMeetYou(fullName) {
-  throw new Error("Please implement the fullName function");
+  const re = /,/;
+  const result = fullName.split(re);
+  return `Nice to meet you, ${result[1].trim()} ${result[0].trim()}`;
 }
+
+let str = "Smith, John";
+console.log(niceToMeetYou(str));
