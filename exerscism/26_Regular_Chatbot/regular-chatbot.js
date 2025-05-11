@@ -1,16 +1,16 @@
+// Solución al ejercicio de Exercism: "Regular Chatbot"
+// Enunciado tomado de Exercism.org
+
 export function isValidCommand(command) {
   const re = /^chatbot/i;
   return re.test(command);
 }
 
 console.log(isValidCommand("Chatbot, play a song from the 80's."));
-// => True
 console.log(isValidCommand("Hey Chatbot, where is the closest pharmacy?"));
-// => False
 console.log(
   isValidCommand("CHATBOT, do you have a solution for this challenge?")
 );
-// => True
 
 export function removeEmoji(message) {
   const re = /emoji[0-9]+/gi;
@@ -34,7 +34,7 @@ console.log(checkPhoneNumber("(+34) 659-771-594"));
 console.log(checkPhoneNumber("659-771-594"));
 
 export function getURL(userInput) {
-  const re = /[a-zA-Z]+\.org/gi;
+  const re = /[a-zA-Z]+\.[a-zA-Z]{2,3}/gi;
   const result = userInput.match(re);
 
   if (result) {
@@ -44,7 +44,9 @@ export function getURL(userInput) {
   }
 }
 
-console.log(getURL("I learned a lot from exercism.org"));
+console.log(
+  getURL("I learned a lot from exercism.org notion.so and reddit.com")
+);
 
 export function niceToMeetYou(fullName) {
   const re = /,/;
