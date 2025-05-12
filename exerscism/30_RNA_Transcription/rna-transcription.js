@@ -1,3 +1,6 @@
+// Solución al ejercicio de Exercism: "RNA Transcription"
+// Enunciado tomado de Exercism.org
+
 export const toRna = (adn) => {
   const nucleodites = {
     G: "C",
@@ -13,5 +16,6 @@ export const toRna = (adn) => {
   return rna.join("");
 };
 
+// Test cases
 console.log(toRna("ACGTGGTCTTAA"));
 console.log(toRna(""));
