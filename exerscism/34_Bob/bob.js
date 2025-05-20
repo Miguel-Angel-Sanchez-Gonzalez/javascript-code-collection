@@ -4,28 +4,31 @@
 export const hey = (message) => {
   message = message.trim();
 
-  const regWithNums = /\d/;
-  const regWithSpecialChars = /[:)]+/;
   if (message === "") {
     return "Fine. Be that way!";
   }
 
+  const isUpperCase = message === message.toUpperCase();
+  const isQuestion = message.endsWith("?");
+  const hasLetters = /[a-zA-Z]/.test(message);
+  const hasNumbers = /\d/.test(message);
+  const hasSpecialChars = /[:)]+/.test(message);
+
   if (
-    message === message.toUpperCase() &&
-    message.endsWith("?") &&
-    !regWithNums.test(message) &&
-    !regWithSpecialChars.test(message)
+    isUpperCase &&
+    isQuestion &&
+    hasLetters &&
+    !hasNumbers &&
+    !hasSpecialChars
   ) {
     return "Calm down, I know what I'm doing!";
   }
 
-  if (message.endsWith("?")) {
+  if (isQuestion) {
     return "Sure.";
   }
 
-  const onlyLetters = message.replace(/[^a-zA-Z]/g, "");
-
-  if (onlyLetters && onlyLetters === onlyLetters.toUpperCase()) {
+  if (isUpperCase && hasLetters) {
     return "Whoa, chill out!";
   }
 
