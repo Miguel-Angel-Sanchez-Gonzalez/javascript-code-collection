@@ -3,8 +3,8 @@
 
 export const reverseString = (inputString) => {
   let result = "";
-  for (let index = 1; index <= inputString.length; index++) {
-    const element = inputString[inputString.length - index];
+  for (let index = inputString.length - 1; index >= 0; index--) {
+    const element = inputString[index];
     result += element;
   }
   return result;
