@@ -2,46 +2,38 @@
 // Enunciado tomado de Exercism.org
 export class Triangle {
   constructor(...sides) {
-    const [a, b, c] = sides;
-    this.sideA = a;
-    this.sideB = b;
-    this.sideC = c;
+    this.sides = sides.sort((a, b) => a - b);
+  }
+
+  get isATriangle() {
+    const [a, b, c] = this.sides;
+    return a > 0 && a + b > c;
+  }
+
+  get isValid() {
+    return this.isATriangle;
   }
 
   get isEquilateral() {
-    if (!this.isATriangle()) {
-      return false;
-    }
-    return this.sideA === this.sideB && this.sideB === this.sideC;
+    return (
+      this.isValid &&
+      this.sides[0] === this.sides[1] &&
+      this.sides[1] === this.sides[2]
+    );
   }
 
   get isIsosceles() {
-    if (!this.isATriangle()) {
-      return false;
-    }
     return (
-      this.sideA === this.sideB ||
-      this.sideB === this.sideC ||
-      this.sideA === this.sideC
+      this.isValid &&
+      (this.sides[0] === this.sides[1] || this.sides[1] === this.sides[2])
     );
   }
 
   get isScalene() {
-    if (!this.isATriangle()) {
-      return false;
-    }
     return (
-      this.sideA !== this.sideB &&
-      this.sideB !== this.sideC &&
-      this.sideA !== this.sideC
-    );
-  }
-
-  isATriangle() {
-    return (
-      this.sideA + this.sideB > this.sideC &&
-      this.sideA + this.sideC > this.sideB &&
-      this.sideB + this.sideC > this.sideA
+      this.isValid &&
+      this.sides[0] !== this.sides[1] &&
+      this.sides[1] !== this.sides[2]
     );
   }
 }
