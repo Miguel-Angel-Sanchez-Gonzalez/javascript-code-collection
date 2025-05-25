@@ -3,14 +3,15 @@
 
 export const transform = (obj) => {
   const result = {};
-  const [...arrays] = Object.values(obj);
-  const keys = Object.keys(obj);
 
-  arrays.forEach((arr, index) => {
-    for (const card of arr) {
-      result[card.toLowerCase()] = Number(keys[index]);
+  for (const score in obj) {
+    const letters = obj[score];
+    const numericScore = Number(score);
+
+    for (const letter of letters) {
+      result[letter.toLowerCase()] = numericScore;
     }
-  });
+  }
 
   return result;
 };
