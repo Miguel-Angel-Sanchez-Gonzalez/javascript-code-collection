@@ -2,18 +2,22 @@
 // Enunciado tomado de Exercism.org
 
 export const convert = (num) => {
+  const rules = [
+    { factor: 3, sound: "Pling" },
+    { factor: 5, sound: "Plang" },
+    { factor: 7, sound: "Plong" },
+  ];
+
   let result = "";
-  if (num % 3 === 0) {
-    result += "Pling";
+  for (const rule of rules) {
+    if (num % rule.factor === 0) {
+      result += rule.sound;
+    }
   }
-  if (num % 5 === 0) {
-    result += "Plang";
-  }
-  if (num % 7 === 0) {
-    result += "Plong";
-  }
+
   return result !== "" ? result : String(num);
 };
 
+// Test cases
 console.log(typeof convert(1));
 console.log(convert(105));
