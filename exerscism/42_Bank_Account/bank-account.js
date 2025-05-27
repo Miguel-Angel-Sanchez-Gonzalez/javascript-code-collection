@@ -9,7 +9,7 @@ export class BankAccount {
 
   open() {
     if (this.statusAccount) {
-      throw new ValueError();
+      throw new ValueError("Account is already open");
     }
     this.statusAccount = true;
     this.money = 0;
@@ -17,42 +17,46 @@ export class BankAccount {
 
   close() {
     if (!this.statusAccount) {
-      throw new ValueError();
+      throw new ValueError("Account is not open");
     }
     this.statusAccount = false;
   }
 
   deposit(amount) {
     if (!this.statusAccount) {
-      throw new ValueError();
+      throw new ValueError("Account is not open");
     }
     if (amount < 0) {
-      throw new ValueError();
+      throw new ValueError("Deposit amount cannot be negative");
     }
     this.money += amount;
   }
 
   withdraw(amount) {
     if (!this.statusAccount) {
-      throw new ValueError();
+      throw new ValueError("Account is not open");
     }
-    if (amount < 0 || amount > this.money) {
-      throw new ValueError();
+    if (amount < 0) {
+      throw new ValueError("Withdrawal amount cannot be negative");
+    }
+    if (amount > this.money) {
+      throw new ValueError("Cannot withdraw more than current balance");
     }
     this.money -= amount;
   }
 
   get balance() {
     if (!this.statusAccount) {
-      throw new ValueError();
+      throw new ValueError("Account is not open");
     }
     return this.money;
   }
 }
 
 export class ValueError extends Error {
-  constructor() {
-    super("Bank account error");
+  constructor(message) {
+    super(message);
+    this.name = "ValueError";
   }
 }
 
@@ -61,5 +65,4 @@ const account = new BankAccount();
 account.open();
 account.deposit(100);
 account.withdraw(200);
-account.withdraw(80);
 account.close();
