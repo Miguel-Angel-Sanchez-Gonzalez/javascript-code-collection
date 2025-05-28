@@ -6,7 +6,6 @@ export class Squares {
     if (typeof number !== "number" || number < 0) {
       throw new Error("Input must be a non-negative integer");
     }
-    a;
     this.number = number;
   }
 
