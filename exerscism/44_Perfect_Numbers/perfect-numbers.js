@@ -7,20 +7,19 @@ export const classify = (number) => {
   }
 
   let aliquotSum = 0;
-  for (let index = 0; index < number; index++) {
-    if (number % index === 0) {
-      aliquotSum += index;
+  for (let i = 1; i < number; i++) {
+    if (number % i === 0) {
+      aliquotSum += i;
     }
   }
 
   if (number === aliquotSum) {
     return "perfect";
-  }
-  if (number < aliquotSum) {
+  } else if (number < aliquotSum) {
     return "abundant";
+  } else {
+    return "deficient";
   }
-
-  return "deficient";
 };
 
 // Test cases
