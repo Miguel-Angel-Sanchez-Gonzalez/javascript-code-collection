@@ -7,7 +7,7 @@ export class HighScores {
   }
 
   get scores() {
-    return this.arrScores;
+    return [...this.arrScores];
   }
 
   get latest() {
@@ -15,27 +15,16 @@ export class HighScores {
   }
 
   get personalBest() {
-    let best = 0;
-    for (const score of this.arrScores) {
-      if (score > best) {
-        best = score;
-      }
-    }
-    return best;
+    return Math.max(...this.arrScores);
   }
 
   get personalTopThree() {
-    let result = [];
-    const sortScores = this.arrScores.sort((a, b) => b - a);
-    for (let i = 0; i <= 2; i++) {
-      if (sortScores[i] !== undefined) {
-        result.push(sortScores[i]);
-      }
-    }
-    return result;
+    const sortedScores = [...this.arrScores].sort((a, b) => b - a);
+    return sortedScores.slice(0, 3);
   }
 }
 
+// Test cases
 const input = [40];
 console.log(new HighScores(input).scores);
 console.log(new HighScores(input).latest);
