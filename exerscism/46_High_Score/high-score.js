@@ -1,3 +1,6 @@
+// Solución al ejercicio de Exercism: "High Score"
+// Enunciado tomado de Exercism.org
+
 export class HighScores {
   constructor(scores) {
     this.arrScores = Array.from(scores);
