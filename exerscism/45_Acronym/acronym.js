@@ -2,17 +2,13 @@
 // Enunciado tomado de Exercism.org
 
 export const parse = (originalPhrase) => {
-  const cleanPhrase = originalPhrase.toUpperCase().replace(/[-_]/g, " ");
-  const arrWords = cleanPhrase.split(/[\s]/);
-  let result = "";
-
-  for (const word of arrWords) {
-    if (word !== "") {
-      result += word[0];
-    }
-  }
-
-  return result;
+  return originalPhrase
+    .toUpperCase()
+    .replace(/[-_]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word !== "")
+    .map((word) => word[0])
+    .join("");
 };
 
 // Test cases
