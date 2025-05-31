@@ -3,16 +3,15 @@
 
 export const isIsogram = (word) => {
   const cleanedWord = word.toLowerCase().replace(/[-\s]/g, "");
-  const arrWord = cleanedWord.split("");
-  const visitedChar = [];
+  const seenLetters = new Set();
 
-  for (const word of arrWord) {
-    if (!visitedChar.includes(word)) {
-      visitedChar.push(word);
-    } else {
+  for (const letter of cleanedWord) {
+    if (seenLetters.has(letter)) {
       return false;
     }
+    seenLetters.add(letter);
   }
+
   return true;
 };
 
