@@ -2,86 +2,29 @@
 // Enunciado tomado de Exercism.org
 
 export const toRoman = (number) => {
-  let num = number;
+  const romanNumeralsMap = [
+    { value: 1000, numeral: "M" },
+    { value: 900, numeral: "CM" },
+    { value: 500, numeral: "D" },
+    { value: 400, numeral: "CD" },
+    { value: 100, numeral: "C" },
+    { value: 90, numeral: "XC" },
+    { value: 50, numeral: "L" },
+    { value: 40, numeral: "XL" },
+    { value: 10, numeral: "X" },
+    { value: 9, numeral: "IX" },
+    { value: 5, numeral: "V" },
+    { value: 4, numeral: "IV" },
+    { value: 1, numeral: "I" },
+  ];
+
   let result = "";
+  let currentNum = number;
 
-  while (num !== 0) {
-    if (num >= 1000) {
-      num -= 1000;
-      result += "M";
-      continue;
-    }
-
-    if (num >= 900) {
-      num -= 900;
-      result += "CM";
-      continue;
-    }
-
-    if (num >= 500) {
-      num -= 500;
-      result += "D";
-      continue;
-    }
-
-    if (num >= 400) {
-      num -= 400;
-      result += "CD";
-      continue;
-    }
-
-    if (num >= 100) {
-      num -= 100;
-      result += "C";
-      continue;
-    }
-
-    if (num >= 90) {
-      num -= 90;
-      result += "XC";
-      continue;
-    }
-
-    if (num >= 50) {
-      num -= 50;
-      result += "L";
-      continue;
-    }
-
-    if (num >= 40) {
-      num -= 40;
-      result += "XL";
-      continue;
-    }
-
-    if (num >= 10) {
-      num -= 10;
-      result += "X";
-      continue;
-    }
-
-    if (num === 9) {
-      num -= 9;
-      result += "IX";
-      continue;
-    }
-
-    if (num >= 5) {
-      num -= 5;
-      result += "V";
-      continue;
-    }
-
-    if (num === 4) {
-      num -= 4;
-      result += "IV";
-      continue;
-    }
-
-    if (num <= 3) {
-      num -= 1;
-      result += "I";
-      continue;
+  for (const entry of romanNumeralsMap) {
+    while (currentNum >= entry.value) {
+      result += entry.numeral;
+      currentNum -= entry.value;
     }
   }
 
