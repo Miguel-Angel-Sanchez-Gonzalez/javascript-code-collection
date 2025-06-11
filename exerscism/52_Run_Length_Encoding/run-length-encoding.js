@@ -2,22 +2,19 @@
 // Enunciado tomado de Exercism.org
 
 export const encode = (mixedString) => {
-  const arr = mixedString.split("");
-  let counter = 1;
   let result = "";
+  let count = 0;
 
-  for (let i = 0; i < arr.length; i++) {
-    const current = arr[i];
-    if (current === arr[i + 1]) {
-      counter += 1;
-    } else {
-      if (counter !== 1) {
-        result += counter;
-        result += current;
-        counter = 1;
+  for (let i = 0; i < mixedString.length; i++) {
+    count++;
+
+    if (mixedString[i] !== mixedString[i + 1]) {
+      if (count === 1) {
+        result += mixedString[i];
       } else {
-        result += current;
+        result += count + mixedString[i];
       }
+      count = 0;
     }
   }
 
