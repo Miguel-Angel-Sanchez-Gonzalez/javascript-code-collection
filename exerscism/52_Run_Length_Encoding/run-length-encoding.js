@@ -21,14 +21,39 @@ export const encode = (mixedString) => {
   return result;
 };
 
-export const decode = () => {
-  throw new Error("Remove this statement and implement this function");
+export const decode = (mixedString) => {
+  let result = "";
+  let myNum = "1";
+  for (let i = 0; i < mixedString.length; i++) {
+    if (Number.isInteger(parseInt(mixedString[i]))) {
+      myNum = mixedString[i];
+      if (Number.isInteger(parseInt(mixedString[i + 1]))) {
+        myNum += mixedString[i + 1];
+        i++;
+      }
+    } else {
+      result += mixedString[i].repeat(Number(myNum));
+      myNum = "1";
+    }
+  }
+
+  return result;
 };
 
-// Test cases
+// Test cases encode
 console.log(encode(""));
 console.log(encode("XYZ"));
 console.log(encode("AABBBCCCC"));
 console.log(encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB"));
 console.log(encode("  hsqq qww  "));
 console.log(encode("aabbbcccc"));
+
+// Test cases decode
+console.log(decode(""));
+console.log(decode("XYZ"));
+console.log(decode("2A3B4C"));
+console.log(decode("12WB12W3B24WB"));
+console.log(decode("2 hs2q q2w2 "));
+console.log(decode("2a3b4c"));
+// Test Mix
+console.log(decode(encode("zzz ZZ  zZ")));
