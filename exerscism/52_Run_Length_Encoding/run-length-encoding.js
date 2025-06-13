@@ -7,15 +7,9 @@ export const encode = (mixedString) => {
 
   for (let i = 0; i < mixedString.length; i++) {
     count++;
-
-    if (mixedString[i] !== mixedString[i + 1]) {
-      if (count === 1) {
-        result += mixedString[i];
-      } else {
-        result += count + mixedString[i];
-      }
-      count = 0;
-    }
+    mixedString[i] !== mixedString[i + 1] &&
+      ((result += count === 1 ? mixedString[i] : count + mixedString[i]),
+      (count = 0));
   }
 
   return result;
