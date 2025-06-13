@@ -25,16 +25,11 @@ export const decode = (mixedString) => {
   let result = "";
   let myNum = "1";
   for (let i = 0; i < mixedString.length; i++) {
-    if (Number.isInteger(parseInt(mixedString[i]))) {
-      myNum = mixedString[i];
-      if (Number.isInteger(parseInt(mixedString[i + 1]))) {
-        myNum += mixedString[i + 1];
-        i++;
-      }
-    } else {
-      result += mixedString[i].repeat(Number(myNum));
-      myNum = "1";
-    }
+    Number.isInteger(parseInt(mixedString[i]))
+      ? ((myNum = mixedString[i]),
+        Number.isInteger(parseInt(mixedString[i + 1])) &&
+          (myNum += mixedString[++i]))
+      : ((result += mixedString[i].repeat(Number(myNum))), (myNum = "1"));
   }
 
   return result;
