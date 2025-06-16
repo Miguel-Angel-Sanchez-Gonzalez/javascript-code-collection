@@ -2,23 +2,17 @@
 // Enunciado tomado de Exercism.org
 
 export const transpose = (array) => {
-  const objIndex = {};
-  const result = [];
-  for (let i = 0; i < array.length; i++) {
-    const element = array[i];
-    const splitElement = element.split("");
-    for (let j = 0; j < splitElement.length; j++) {
-      const myChar = splitElement[j];
-      if (!objIndex.hasOwnProperty(j)) {
-        objIndex[j] = myChar;
-      } else {
-        objIndex[j] += "" + myChar;
-      }
-    }
-  }
+  if (array.length === 0) return [];
 
-  for (const key in objIndex) {
-    result.push(objIndex[key]);
+  const maxLength = Math.max(...array.map((line) => line.length));
+  const result = [];
+
+  for (let i = 0; i < maxLength; i++) {
+    let row = "";
+    for (let j = 0; j < array.length; j++) {
+      row += array[j][i] || " ";
+    }
+    result.push(row);
   }
 
   return result;
