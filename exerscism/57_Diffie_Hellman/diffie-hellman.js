@@ -18,6 +18,8 @@ export class DiffieHellman {
 
     if (privateKey >= this.p)
       throw new Error("Private key is greater or equal than p");
+
+    return Math.pow(this.g, privateKey) % this.p;
   }
 
   getSecret(theirPublicKey, myPrivateKey) {}
@@ -40,4 +42,4 @@ export function isPrimo(n) {
 // new DiffieHellman(0, 9999);
 // new DiffieHellman(10, 13);
 const diffieHellman = new DiffieHellman(23, 5);
-diffieHellman.getPublicKey(24);
+console.log(diffieHellman.getPublicKey(15));
