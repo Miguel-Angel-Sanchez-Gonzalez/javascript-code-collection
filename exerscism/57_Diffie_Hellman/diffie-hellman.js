@@ -3,6 +3,9 @@
 
 export class DiffieHellman {
   constructor(p, g) {
+    if (p <= 0 || g <= 0 || p >= 9999 || p >= 9999)
+      throw new Error("The constructor arguments are out of range");
+
     if (!isPrimo(p) || !isPrimo(g))
       throw new Error("The constructor arguments are not prime");
 
@@ -10,7 +13,12 @@ export class DiffieHellman {
     this.g = g;
   }
 
-  getPublicKey(privateKey) {}
+  getPublicKey(privateKey) {
+    if (privateKey <= 1) throw new Error("Private key is less or equal than 1");
+
+    if (privateKey >= this.p)
+      throw new Error("Private key is greater or equal than p");
+  }
 
   getSecret(theirPublicKey, myPrivateKey) {}
 
@@ -28,7 +36,8 @@ export function isPrimo(n) {
   return true;
 }
 
-isPrimo(7919);
-
 // Test cases
-new DiffieHellman(10, 13);
+// new DiffieHellman(0, 9999);
+// new DiffieHellman(10, 13);
+const diffieHellman = new DiffieHellman(23, 5);
+diffieHellman.getPublicKey(24);
