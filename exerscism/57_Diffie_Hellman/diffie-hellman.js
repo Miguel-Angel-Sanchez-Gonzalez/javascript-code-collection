@@ -22,7 +22,9 @@ export class DiffieHellman {
     return Math.pow(this.g, privateKey) % this.p;
   }
 
-  getSecret(theirPublicKey, myPrivateKey) {}
+  getSecret(theirPublicKey, myPrivateKey) {
+    return Math.pow(theirPublicKey, myPrivateKey) % this.p;
+  }
 
   getPrivateKey() {}
 }
@@ -41,5 +43,6 @@ export function isPrimo(n) {
 // Test cases
 // new DiffieHellman(0, 9999);
 // new DiffieHellman(10, 13);
-const diffieHellman = new DiffieHellman(23, 5);
-console.log(diffieHellman.getPublicKey(15));
+// const diffieHellman = new DiffieHellman(23, 5);
+// console.log(diffieHellman.getPublicKey(15));
+console.log(new DiffieHellman(23, 5).getSecret(19, 6));
