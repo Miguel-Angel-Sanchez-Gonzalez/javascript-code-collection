@@ -3,7 +3,7 @@
 
 export class DiffieHellman {
   constructor(p, g) {
-    if (p <= 0 || g <= 0 || p >= 9999 || p >= 9999)
+    if (p <= 0 || g <= 0 || p >= 9999 || g >= 9999)
       throw new Error("The constructor arguments are out of range");
 
     if (!isPrimo(p) || !isPrimo(g))
@@ -26,7 +26,9 @@ export class DiffieHellman {
     return Math.pow(theirPublicKey, myPrivateKey) % this.p;
   }
 
-  getPrivateKey() {}
+  getPrivateKey() {
+    return Math.floor(Math.random() * (this.p - 2)) + 2;
+  }
 }
 
 export function isPrimo(n) {
