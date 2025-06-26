@@ -1,15 +1,16 @@
+// Solución al ejercicio de Exercism: "Captain's Log"
+// Enunciado tomado de Exercism.org
+
 export function randomShipRegistryNumber() {
   const max = 9999;
   const min = 1000;
-  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
-  return "NCC-" + randomNumber;
+  return "NCC-" + randomInRange(max, min);
 }
 
 export function randomStardate() {
   const max = 42000.0;
-  const min = 41000.0;
-  const randomNumber = Math.random() * (max - min) + min;
-  return randomNumber;
+  const min = 41000.1;
+  return randomInRange(max, min);
 }
 
 export function randomPlanetClass() {
@@ -28,13 +29,29 @@ export function randomPlanetClass() {
 
   const max = Object.keys(planets).length;
   const min = 1;
-  const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+  const randomNumber = randomInRange(max, min);
 
   for (const key in planets) {
     if (Number(key) === randomNumber) {
       return planets[key];
     }
   }
+}
+
+export function randomInRange(max, min) {
+  if (max < min) {
+    throw new Error("Max must be greater than Min");
+  }
+
+  const esDecimal = hasDecimal(max) || hasDecimal(min);
+
+  return esDecimal
+    ? Math.random() * (max - min) + min
+    : Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function hasDecimal(n) {
+  return Math.floor(n) !== n;
 }
 
 // Test cases
