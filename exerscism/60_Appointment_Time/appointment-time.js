@@ -4,14 +4,8 @@
 export const createAppointment = (days, now = Date.now()) =>
   new Date((now instanceof Date ? now.getTime() : now) + 86_400_000 * days);
 
-/**
- * Generate the appointment timestamp
- * @param {Date} appointmentDate
- * @returns {string} timestamp
- */
-export function getAppointmentTimestamp(appointmentDate) {
-  throw new Error("Remove this line and implement the function");
-}
+export const getAppointmentTimestamp = (appointmentDate) =>
+  appointmentDate.toISOString();
 
 /**
  * Get details of an appointment
@@ -55,3 +49,7 @@ export function isValid(appointmentTimestamp, currentTimestamp) {
 const startDate = new Date("2022-10-05T23:28:43+06:00");
 const result = createAppointment(4, startDate);
 console.log(result);
+
+const appointment = new Date(Date.UTC(2010, 6, 16, 12, 42, 0, 0));
+const result2 = getAppointmentTimestamp(appointment);
+console.log(result2);
