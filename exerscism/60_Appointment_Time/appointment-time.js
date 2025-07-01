@@ -48,15 +48,9 @@ export function updateAppointment(timestamp, options) {
 }
 
 export function timeBetween(timestampA, timestampB) {
-  const secondsDateA = new Date(timestampA).getTime();
-  const secondsDateB = new Date(timestampB).getTime();
-
-  let secondsOfDifference =
-    secondsDateA > secondsDateB
-      ? secondsDateA - secondsDateB
-      : secondsDateB - secondsDateA;
-
-  return Math.round(secondsOfDifference / 1000);
+  return Math.round(
+    Math.abs(new Date(timestampA) - new Date(timestampB)) / 1000
+  );
 }
 
 /**
