@@ -9,14 +9,14 @@ export const getAppointmentTimestamp = (appointmentDate) =>
 
 export function getAppointmentDetails(timestamp) {
   const date = new Date(timestamp);
-  const result = {};
-  result.year = date.getFullYear();
-  result.month = date.getMonth();
-  result.date = date.getDate();
-  result.hour = date.getHours();
-  result.minute = date.getMinutes();
 
-  return result;
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth(),
+    date: date.getDate(),
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+  };
 }
 
 /**
