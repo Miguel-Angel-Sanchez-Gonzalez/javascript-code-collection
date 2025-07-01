@@ -7,13 +7,16 @@ export const createAppointment = (days, now = Date.now()) =>
 export const getAppointmentTimestamp = (appointmentDate) =>
   appointmentDate.toISOString();
 
-/**
- * Get details of an appointment
- * @param {string} timestamp (ISO 8601)
- * @returns {Record<'year' | 'month' | 'date' | 'hour' | 'minute', number>} the appointment details
- */
 export function getAppointmentDetails(timestamp) {
-  throw new Error("Remove this line and implement the function");
+  const date = new Date(timestamp);
+  const result = {};
+  result.year = date.getFullYear();
+  result.month = date.getMonth();
+  result.date = date.getDate();
+  result.hour = date.getHours();
+  result.minute = date.getMinutes();
+
+  return result;
 }
 
 /**
@@ -46,10 +49,12 @@ export function isValid(appointmentTimestamp, currentTimestamp) {
 }
 
 // Test cases
-const startDate = new Date("2022-10-05T23:28:43+06:00");
-const result = createAppointment(4, startDate);
-console.log(result);
+// const startDate = new Date("2022-10-05T23:28:43+06:00");
+// const result = createAppointment(4, startDate);
+// console.log(result);
 
-const appointment = new Date(Date.UTC(2010, 6, 16, 12, 42, 0, 0));
-const result2 = getAppointmentTimestamp(appointment);
-console.log(result2);
+// const appointment = new Date(Date.UTC(2010, 6, 16, 12, 42, 0, 0));
+// const result2 = getAppointmentTimestamp(appointment);
+// console.log(result2);
+
+console.log(getAppointmentDetails("2022-04-24T08:15:00.000"));
