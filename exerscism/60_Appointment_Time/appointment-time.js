@@ -47,14 +47,16 @@ export function updateAppointment(timestamp, options) {
   return getAppointmentDetails(date.toISOString());
 }
 
-/**
- * Get available time in seconds (rounded) between two appointments
- * @param {string} timestampA (ISO 8601)
- * @param {string} timestampB (ISO 8601)
- * @returns {number} amount of seconds (rounded)
- */
 export function timeBetween(timestampA, timestampB) {
-  throw new Error("Remove this line and implement the function");
+  const secondsDateA = new Date(timestampA).getTime();
+  const secondsDateB = new Date(timestampB).getTime();
+
+  let secondsOfDifference =
+    secondsDateA > secondsDateB
+      ? secondsDateA - secondsDateB
+      : secondsDateB - secondsDateA;
+
+  return Math.round(secondsOfDifference / 1000);
 }
 
 /**
@@ -77,4 +79,6 @@ export function isValid(appointmentTimestamp, currentTimestamp) {
 
 // console.log(getAppointmentDetails("2022-02-09T09:20:00.000"));
 
-console.log(updateAppointment("2022-02-09T09:20:00.000", { month: 6 }));
+// console.log(updateAppointment("2022-02-09T09:20:00.000", { month: 6 }));
+
+console.log(timeBetween("2022-12-12T09:20:00.000", "2022-12-18T08:30:00.000"));
