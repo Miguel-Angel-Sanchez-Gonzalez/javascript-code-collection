@@ -19,14 +19,32 @@ export function getAppointmentDetails(timestamp) {
   };
 }
 
-/**
- * Update an appointment with given options
- * @param {string} timestamp (ISO 8601)
- * @param {Partial<Record<'year' | 'month' | 'date' | 'hour' | 'minute', number>>} options
- * @returns {Record<'year' | 'month' | 'date' | 'hour' | 'minute', number>} the appointment details
- */
 export function updateAppointment(timestamp, options) {
-  throw new Error("Remove this line and implement the function");
+  const date = new Date(timestamp);
+
+  for (const key in options) {
+    const value = options[key];
+
+    switch (key) {
+      case "year":
+        date.setFullYear(value);
+        break;
+      case "month":
+        date.setMonth(value);
+        break;
+      case "date":
+        date.setDate(value);
+        break;
+      case "hour":
+        date.setHours(value);
+        break;
+      case "minute":
+        date.setMinutes(value);
+        break;
+    }
+  }
+
+  return getAppointmentDetails(date.toISOString());
 }
 
 /**
@@ -57,4 +75,6 @@ export function isValid(appointmentTimestamp, currentTimestamp) {
 // const result2 = getAppointmentTimestamp(appointment);
 // console.log(result2);
 
-console.log(getAppointmentDetails("2022-04-24T08:15:00.000"));
+// console.log(getAppointmentDetails("2022-02-09T09:20:00.000"));
+
+console.log(updateAppointment("2022-02-09T09:20:00.000", { month: 6 }));
