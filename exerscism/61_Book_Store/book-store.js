@@ -44,3 +44,21 @@ export const cost = (librosRestantes, memo = {}) => {
   memo[clave] = costoMinimo;
   return costoMinimo;
 };
+
+function combinar(lista, k) {
+  if (k === 0) return [[]];
+  if (lista.length < k) return [];
+
+  const resultado = [];
+
+  for (let i = 0; i <= lista.length - k; i++) {
+    const elemento = lista[i];
+    const subcombinaciones = combinar(lista.slice(i + 1), k - 1);
+
+    for (const subcombo of subcombinaciones) {
+      resultado.push([elemento, ...subcombo]);
+    }
+  }
+
+  return resultado;
+}
