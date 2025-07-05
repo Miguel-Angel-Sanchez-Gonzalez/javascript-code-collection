@@ -4,14 +4,17 @@
 function group(basket) {
   const conteo = [0, 0, 0, 0, 0];
   for (const tomo of basket) {
-    conteo[tomo - 1] += 1;
+    conteo[tomo] += 1;
   }
   return conteo;
 }
 
-export const cost = (basket, memo = {}) => {
-  let librosRestantes = group(basket);
+export const cost = (basket) => {
+  const librosRestantes = group(basket);
+  return costInterno(librosRestantes);
+};
 
+function costInterno(librosRestantes, memo = {}) {
   if (librosRestantes.every((libro) => libro === 0)) return 0;
 
   const clave = librosRestantes.join(",");
@@ -45,9 +48,10 @@ export const cost = (basket, memo = {}) => {
         nuevoEstado[indice] -= 1;
       }
 
-      const precioGrupo = tamañoGrupo * 800 * (1 - descuento[tamañoGrupo]);
-
-      const costoTotal = precioGrupo + cost(nuevoEstado, memo);
+      const precioGrupo = Math.round(
+        tamañoGrupo * 800 * (1 - descuento[tamañoGrupo])
+      );
+      const costoTotal = precioGrupo + costInterno(nuevoEstado, memo);
 
       if (costoTotal < costoMinimo) {
         costoMinimo = costoTotal;
@@ -56,9 +60,8 @@ export const cost = (basket, memo = {}) => {
   }
 
   memo[clave] = costoMinimo;
-
   return costoMinimo;
-};
+}
 
 function combine(lista, k) {
   if (k === 0) return [[]];
@@ -84,4 +87,6 @@ console.log(cost([2, 2]));
 console.log(cost([]));
 console.log(cost([1, 2]));
 console.log(cost([1, 2, 3]));
-console.log(cost([2, 2, 2, 1, 1]));
+console.log(cost([1, 2, 3, 4, 5]));
+console.log(cost([1, 1, 2, 2, 3, 3, 4, 5]));
+console.log(cost([1, 1, 2, 3, 4, 4, 5, 5]));
