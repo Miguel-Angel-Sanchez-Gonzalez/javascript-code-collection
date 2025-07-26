@@ -4,26 +4,18 @@
 export const rows = (inputNum) => {
   if (inputNum === 0) return [];
 
-  const result = [];
-  result.push([1]);
+  const result = [[1]];
 
-  while (result.length < inputNum) {
-    const currentArray = result[result.length - 1];
-    const nextArr = [];
+  for (let i = 1; i < inputNum; i++) {
+    const prevRow = result[i - 1];
+    const newRow = [1];
 
-    for (let i = 0; i < currentArray.length; i++) {
-      if (nextArr.length === 0) {
-        nextArr.push(currentArray[0]);
-      }
-
-      if (currentArray[i + 1] === undefined) {
-        nextArr.push(currentArray.at(-1));
-      } else {
-        nextArr.push(currentArray[i] + currentArray[i + 1]);
-      }
+    for (let j = 1; j < prevRow.length; j++) {
+      newRow.push(prevRow[j - 1] + prevRow[j]);
     }
 
-    result.push(nextArr);
+    newRow.push(1);
+    result.push(newRow);
   }
 
   return result;
