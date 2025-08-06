@@ -36,8 +36,12 @@ export class List {
     return new List(result);
   }
 
-  map() {
-    throw new Error("Remove this line and implement the function");
+  map(callback) {
+    const result = [];
+    for (const item of this.list) {
+      result.push(callback(item));
+    }
+    return new List(result);
   }
 
   length() {
@@ -81,9 +85,12 @@ const list7 = new List([1, 2, 3, 5]);
 // console.log(list7.filter((el) => el % 2 === 1).values);
 
 // Test case length
-
 const list8 = new List();
-console.log(list8.length());
+// console.log(list8.length());
 
 const list9 = new List([1, 2, 3, 4]);
-console.log(list9.length());
+// console.log(list9.length());
+
+// Test case Map
+const list10 = new List([1, 3, 5, 7]);
+console.log(list10.map((el) => ++el).values);
