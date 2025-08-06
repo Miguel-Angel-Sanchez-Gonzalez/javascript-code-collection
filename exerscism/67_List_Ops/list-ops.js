@@ -1,7 +1,5 @@
-//
-// This is only a SKELETON file for the 'List Ops' exercise. It's been provided as a
-// convenience to get you started writing code faster.
-//
+// Solución al ejercicio de Exercism: "List Ops"
+// Enunciado tomado de Exercism.org
 
 export class List {
   constructor(array = []) {
@@ -9,7 +7,6 @@ export class List {
 
     for (let item of array) {
       if (item instanceof List) {
-        // Solo agregamos si tiene valores
         this.list.push(...item.list.filter((val) => val !== undefined));
       } else if (item !== undefined) {
         this.list.push(item);
@@ -29,8 +26,14 @@ export class List {
     return new List([...this.values, ...newList.list]);
   }
 
-  filter() {
-    throw new Error("Remove this line and implement the function");
+  filter(callback) {
+    const result = [];
+    for (const item of this.list) {
+      if (callback(item)) {
+        result.push(item);
+      }
+    }
+    return new List(result);
   }
 
   map() {
@@ -67,4 +70,8 @@ const list5 = new List([]);
 const list6 = new List([4, 5, 6]);
 const listOfLists = new List([list4, list5, list6]);
 
-console.log(list3.concat(listOfLists).values);
+// console.log(list3.concat(listOfLists).values);
+
+// Test case filter
+const list7 = new List([1, 2, 3, 5]);
+console.log(list7.filter((el) => el % 2 === 1).values);
