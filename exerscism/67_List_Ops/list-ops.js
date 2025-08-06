@@ -41,7 +41,11 @@ export class List {
   }
 
   length() {
-    throw new Error("Remove this line and implement the function");
+    let count = 0;
+    for (const item of this.list) {
+      count++;
+    }
+    return count;
   }
 
   foldl() {
@@ -74,4 +78,12 @@ const listOfLists = new List([list4, list5, list6]);
 
 // Test case filter
 const list7 = new List([1, 2, 3, 5]);
-console.log(list7.filter((el) => el % 2 === 1).values);
+// console.log(list7.filter((el) => el % 2 === 1).values);
+
+// Test case length
+
+const list8 = new List();
+console.log(list8.length());
+
+const list9 = new List([1, 2, 3, 4]);
+console.log(list9.length());
