@@ -7,53 +7,20 @@ export class Robot {
   }
 
   static generateName() {
-    const letters = [
-      "A",
-      "B",
-      "C",
-      "D",
-      "E",
-      "F",
-      "G",
-      "H",
-      "I",
-      "J",
-      "K",
-      "L",
-      "M",
-      "O",
-      "P",
-      "Q",
-      "R",
-      "S",
-      "T",
-      "U",
-      "V",
-      "W",
-      "X",
-      "Y",
-      "Z",
-    ];
-    const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const digits = "0123456789";
 
-    const min = 1;
-    const max = letters.length - 1;
+    const getRandomChar = (charset) =>
+      charset[Math.floor(Math.random() * charset.length)];
 
-    let nameRobot = "";
+    const name =
+      getRandomChar(letters) +
+      getRandomChar(letters) +
+      getRandomChar(digits) +
+      getRandomChar(digits) +
+      getRandomChar(digits);
 
-    do {
-      if (nameRobot.length < 2) {
-        const random = Math.floor(Math.random() * (max - min + 1) + min);
-        nameRobot += letters[random];
-      } else {
-        const random = Math.floor(
-          Math.random() * (numbers.length - 1 - min + 1) + min
-        );
-        nameRobot += numbers[random];
-      }
-    } while (nameRobot.length < 5);
-
-    return nameRobot;
+    return name;
   }
 }
 
