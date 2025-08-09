@@ -52,8 +52,13 @@ export class List {
     return count;
   }
 
-  foldl() {
-    throw new Error("Remove this line and implement the function");
+  foldl(callback, initialValue) {
+    let accumulator = initialValue;
+    for (const item of this.list) {
+      accumulator = callback(accumulator, item);
+    }
+
+    return accumulator;
   }
 
   foldr() {
@@ -93,4 +98,8 @@ const list9 = new List([1, 2, 3, 4]);
 
 // Test case Map
 const list10 = new List([1, 3, 5, 7]);
-console.log(list10.map((el) => ++el).values);
+// console.log(list10.map((el) => ++el).values);
+
+// Test case Foldl
+const list11 = new List();
+console.log(list11.foldl((acc, el) => acc + el, 2));
