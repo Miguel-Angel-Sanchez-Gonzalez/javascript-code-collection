@@ -62,17 +62,16 @@ export class List {
   }
 
   foldr(callback, initialValue) {
-    let accumulator = initialValue;
-    for (let i = this.list.length - 1; i >= 0; i--) {
-      accumulator = callback(accumulator, this.list[i]);
+    let acc = initialValue;
+    for (let i = this.list.length; i--; ) {
+      acc = callback(acc, this.list[i]);
     }
-
-    return accumulator;
+    return acc;
   }
 
   reverse() {
     const arrReverse = [];
-    for (let i = this.list.length - 1; i >= 0; i--) {
+    for (let i = this.list.length; i--; ) {
       arrReverse.push(this.list[i]);
     }
     return new List(arrReverse);
@@ -83,7 +82,7 @@ export class List {
 const list1 = new List([1, 2]);
 const list2 = new List([2, 3, 4, 5]);
 
-// console.log(list1.append(list2));
+console.log(list1.append(list2));
 
 // Test case concat
 const list3 = new List([1, 2]);
@@ -92,30 +91,30 @@ const list5 = new List([]);
 const list6 = new List([4, 5, 6]);
 const listOfLists = new List([list4, list5, list6]);
 
-// console.log(list3.concat(listOfLists).values);
+console.log(list3.concat(listOfLists).values);
 
 // Test case filter
 const list7 = new List([1, 2, 3, 5]);
-// console.log(list7.filter((el) => el % 2 === 1).values);
+console.log(list7.filter((el) => el % 2 === 1).values);
 
 // Test case length
 const list8 = new List();
-// console.log(list8.length());
+console.log(list8.length());
 
 const list9 = new List([1, 2, 3, 4]);
-// console.log(list9.length());
+console.log(list9.length());
 
 // Test case Map
 const list10 = new List([1, 3, 5, 7]);
-// console.log(list10.map((el) => ++el).values);
+console.log(list10.map((el) => ++el).values);
 
 // Test case Foldl
 const list11 = new List();
-// console.log(list11.foldl((acc, el) => acc + el, 2));
+console.log(list11.foldl((acc, el) => acc + el, 2));
 
 // Test case Foldr
 const list12 = new List([1, 2, 3, 4]);
-// console.log(list12.foldr((acc, el) => el / acc, 24));
+console.log(list12.foldr((acc, el) => el / acc, 24));
 
 // Test case
 const list13 = new List([[1, 2], [3], [], [4, 5, 6]]);
