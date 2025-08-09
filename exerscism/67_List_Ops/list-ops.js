@@ -61,12 +61,21 @@ export class List {
     return accumulator;
   }
 
-  foldr() {
-    throw new Error("Remove this line and implement the function");
+  foldr(callback, initialValue) {
+    let accumulator = initialValue;
+    for (let i = this.list.length - 1; i >= 0; i--) {
+      accumulator = callback(accumulator, this.list[i]);
+    }
+
+    return accumulator;
   }
 
   reverse() {
-    throw new Error("Remove this line and implement the function");
+    const arrReverse = [];
+    for (let i = this.list.length - 1; i >= 0; i--) {
+      arrReverse.push(this.list[i]);
+    }
+    return new List(arrReverse);
   }
 }
 
@@ -102,4 +111,12 @@ const list10 = new List([1, 3, 5, 7]);
 
 // Test case Foldl
 const list11 = new List();
-console.log(list11.foldl((acc, el) => acc + el, 2));
+// console.log(list11.foldl((acc, el) => acc + el, 2));
+
+// Test case Foldr
+const list12 = new List([1, 2, 3, 4]);
+// console.log(list12.foldr((acc, el) => el / acc, 24));
+
+// Test case
+const list13 = new List([[1, 2], [3], [], [4, 5, 6]]);
+console.log(list13.reverse().values);
