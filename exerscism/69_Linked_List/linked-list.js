@@ -1,3 +1,6 @@
+// Solución al ejercicio de Exercism: "Linked List"
+// Enunciado tomado de Exercism.org
+
 class Node {
   constructor(value, next = null) {
     this.value = value;
@@ -68,14 +71,14 @@ export class LinkedList {
   }
 
   count() {
-    throw new Error("Remove this line and implement the function");
+    return this.size;
   }
 }
 
 // Test cases
 const list = new LinkedList();
-list.push(23);
-list.push(5);
-console.log(list.shift());
-console.log(list.shift());
-console.log(list);
+list.push(31);
+list.unshift(43);
+list.shift();
+list.pop();
+console.log(list.count());
