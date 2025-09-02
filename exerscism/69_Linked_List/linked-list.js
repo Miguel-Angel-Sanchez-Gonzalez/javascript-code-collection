@@ -49,13 +49,18 @@ export class LinkedList {
     return current.value;
   }
 
-  shift(data) {
-    this.head = new Node(data, this.head);
-    this.size++;
+  shift() {
+    if (this.size === 0) return null;
+
+    const current = this.head;
+    this.head = this.head.next;
+    this.size--;
+    return current.value;
   }
 
-  unshift() {
-    throw new Error("Remove this line and implement the function");
+  unshift(data) {
+    this.head = new Node(data, this.head);
+    this.size++;
   }
 
   delete() {
@@ -69,7 +74,8 @@ export class LinkedList {
 
 // Test cases
 const list = new LinkedList();
-list.push(11);
-list.push(13);
-console.log(list.pop());
+list.push(23);
+list.push(5);
+console.log(list.shift());
+console.log(list.shift());
 console.log(list);
