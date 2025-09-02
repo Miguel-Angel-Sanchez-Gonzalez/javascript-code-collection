@@ -12,19 +12,28 @@ export class LinkedList {
   }
 
   push(data) {
-    this.head = new Node(data, this.head); // Si ya hay algo en la cabeza ahora la nueva referencia va a apuntar a ese algo
-    this.size++;
+    const newNode = new Node(data);
+    if (!this.head) {
+      this.head = newNode;
+      this.size++;
+    } else {
+      let current = this.head;
+      while (current.next) {
+        current = current.next;
+      }
+      current.next = newNode;
+      this.size++;
+    }
   }
 
   pop() {
-    // TODO: Refactor this method
+    if (this.size === 0) return null;
+
     let current = this.head;
     let previous = null;
     let count = 0;
 
-    if (this.size === 0) {
-      return null;
-    } else if (this.size === 1) {
+    if (this.size === 1) {
       this.head = null;
       this.size--;
       return current.value;
@@ -60,5 +69,6 @@ export class LinkedList {
 // Test cases
 const list = new LinkedList();
 list.push(11);
+list.push(13);
 console.log(list.pop());
 console.log(list);
