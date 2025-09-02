@@ -49,8 +49,9 @@ export class LinkedList {
     return current.value;
   }
 
-  shift() {
-    throw new Error("Remove this line and implement the function");
+  shift(data) {
+    this.head = new Node(data, this.head);
+    this.size++;
   }
 
   unshift() {
