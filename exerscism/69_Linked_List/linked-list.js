@@ -66,8 +66,26 @@ export class LinkedList {
     this.size++;
   }
 
-  delete() {
-    throw new Error("Remove this line and implement the function");
+  delete(value) {
+    if (this.size === 0) return null;
+
+    let current = this.head;
+    let previous = null;
+    let found = false;
+
+    while (current && !found) {
+      if (current.value === value) {
+        found = true;
+      } else {
+        previous = current;
+        current = current.next;
+      }
+    }
+    if (!found) return null;
+
+    previous ? (previous.next = current.next) : (this.head = current.next); // Si el previous tiene valor, entre en el else, si no, el valor buscado es el head
+    this.size--;
+    return current.value;
   }
 
   count() {
@@ -77,8 +95,7 @@ export class LinkedList {
 
 // Test cases
 const list = new LinkedList();
-list.push(31);
-list.unshift(43);
-list.shift();
-list.pop();
+list.push(7);
+console.log(list.delete(71));
 console.log(list.count());
+console.log(list);
