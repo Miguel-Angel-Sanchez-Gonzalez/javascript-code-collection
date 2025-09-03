@@ -20,3 +20,10 @@ function reverseStringLoop(string) {
 // Test cases whit loop
 console.log(reverseStringLoop("sin gamulan"));
 console.log(reverseStringLoop("Tele-ka"));
+
+function reverseStringRecursive(str) {
+  if (str === "") return "";
+  return reverseStringRecursive(str.slice(1)) + str[0];
+}
+
+console.log(reverseStringRecursive("Spinneta"));
