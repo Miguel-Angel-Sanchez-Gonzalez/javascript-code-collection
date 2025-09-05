@@ -12,3 +12,13 @@ function isPalindrome(str) {
 console.log(isPalindrome("A man, a plan, a canal: Panama"));
 console.log(isPalindrome("somos"));
 console.log(isPalindrome("Anita lava la tina"));
+
+function isPalindromeReverse(str) {
+  const clearStr = str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+  const reverseString = clearStr.split("").reverse().join("");
+  return clearStr === reverseString;
+}
+
+console.log(isPalindromeReverse("A man, a plan, a canal: Panama"));
+console.log(isPalindrome("somos"));
+console.log(isPalindrome("Anita lava la tina"));
