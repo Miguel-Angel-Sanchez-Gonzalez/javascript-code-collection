@@ -126,4 +126,7 @@ const cipher3 = new Cipher("lemon");
 console.log(cipher3.encode("attackatdawn"));
 
 const cipher4 = new Cipher("tomato");
-console.log(cipher4.encode("y"));
+console.log(cipher4.encode("a"));
+
+const cipher5 = new Cipher("oz");
+console.log(cipher5.encode("oo"));
