@@ -88,7 +88,7 @@ export class Cipher {
   encode(plaintext) {
     const check = isMonoalphabeticA(plaintext);
     if (check) {
-      return this._key;
+      return this._key.substring(0, plaintext.length);
     }
     if (plaintext.length > this.key.length) {
       this._key = completeKey(plaintext, this._key);
@@ -127,17 +127,21 @@ export class Cipher {
 }
 
 // Test cases
-const cipher = new Cipher("abcd");
-console.log(cipher.encode("hello"));
+// const cipher = new Cipher("abcd");
+// console.log(cipher.encode("hello"));
 
-const cipher2 = new Cipher("d");
-console.log(cipher2.encode("iamapandabear"));
+// const cipher2 = new Cipher("d");
+// console.log(cipher2.encode("iamapandabear"));
 
-const cipher3 = new Cipher("lemon");
-console.log(cipher3.encode("attackatdawn"));
+// const cipher3 = new Cipher("lemon");
+// console.log(cipher3.encode("attackatdawn"));
 
-const cipher4 = new Cipher("tomato");
-console.log(cipher4.encode("a"));
+// const cipher4 = new Cipher("tomato");
+// console.log(cipher4.encode("a"));
 
-const cipher5 = new Cipher("oz");
-console.log(cipher5.encode("oo"));
+// const cipher5 = new Cipher("oz");
+// console.log(cipher5.encode("oo"));
+
+const cipher = new Cipher();
+console.log(cipher.encode("aaaaaaaaaa"));
+console.log(cipher.key.substring(0, 10));
