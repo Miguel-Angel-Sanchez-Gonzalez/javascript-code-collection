@@ -53,37 +53,48 @@ function randomKey(lengthKey) {
   return newKey;
 }
 
+function isMonoalphabeticA(plaintext) {
+  if (plaintext.length === 1) {
+    if (plaintext === "a") {
+      return true;
+    }
+  } else {
+    const uniqueLetters = new Set(plaintext);
+    if (uniqueLetters.size === 1 && uniqueLetters.has("a")) {
+      return true;
+    }
+  }
+}
+
+function completeKey(plaintext, key) {
+  const keyArr = key.split("");
+  let count = 0;
+  while (plaintext.length > key.length) {
+    if (keyArr[count] !== undefined) {
+      key += keyArr[count];
+      count++;
+    } else {
+      count = 0;
+    }
+  }
+  return key;
+}
+
 export class Cipher {
   constructor(key = randomKey(100)) {
     this._key = key;
   }
 
   encode(plaintext) {
-    if (plaintext.length === 1) {
-      if (plaintext === "a") {
-        return this._key;
-      }
-    } else {
-      const uniqueLetters = new Set(plaintext);
-      if (uniqueLetters.size === 1 && uniqueLetters.has("a")) {
-        return this._key;
-      }
+    const check = isMonoalphabeticA(plaintext);
+    if (check) {
+      return this._key;
+    }
+    if (plaintext.length > this.key.length) {
+      this._key = completeKey(plaintext, this._key);
     }
 
-    if (plaintext.length > this._key.length) {
-      const keyArr = this._key.split("");
-      let count = 0;
-      while (plaintext.length > this._key.length) {
-        if (keyArr[count] !== undefined) {
-          this._key += keyArr[count];
-          count++;
-        } else {
-          count = 0;
-        }
-      }
-    }
-
-    let arrEncodedText = [];
+    const arrEncodedText = [];
     const alphabetLength = Object.values(alphabet).length;
 
     for (let i = 0; i < plaintext.length; i++) {
