@@ -117,8 +117,35 @@ export class Cipher {
     return result;
   }
 
-  decode() {
-    throw new Error("Remove this line and implement the function");
+  decode(ciphertext) {
+    const arrCipherText = ciphertext.split("");
+    const arrKey = this._key.split("");
+    const arrNumbersCipherText = [];
+    const arrNumbersKey = [];
+
+    for (let i = 0; i < arrCipherText.length; i++) {
+      arrNumbersCipherText.push(
+        Number(findKeyByValue(alphabet, arrCipherText[i]))
+      );
+      arrNumbersKey.push(Number(findKeyByValue(alphabet, arrKey[i])));
+    }
+
+    const arrOriginalText = [];
+    for (let i = 0; i < arrNumbersCipherText.length; i++) {
+      const originalNum = arrNumbersCipherText[i] - arrNumbersKey[i];
+      if (originalNum < 0) {
+        arrOriginalText.push(originalNum + 26);
+      } else {
+        arrOriginalText.push(originalNum);
+      }
+    }
+
+    let result = "";
+    arrOriginalText.forEach((element) => {
+      result += alphabet[element];
+    });
+
+    return result;
   }
 
   get key() {
@@ -142,6 +169,10 @@ export class Cipher {
 // const cipher5 = new Cipher("oz");
 // console.log(cipher5.encode("oo"));
 
-const cipher = new Cipher();
-console.log(cipher.encode("aaaaaaaaaa"));
-console.log(cipher.key.substring(0, 10));
+// const cipher = new Cipher();
+// console.log(cipher.encode("abcdefghij"));
+// console.log(cipher.key.substring(0, 10));
+
+const cipher = new Cipher("lemon");
+console.log(cipher.encode("attackatdawn"));
+console.log(cipher.decode("lxfopvefrnhr"));
