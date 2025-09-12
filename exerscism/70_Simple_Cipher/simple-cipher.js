@@ -100,9 +100,10 @@ export class Cipher {
     for (let i = 0; i < plaintext.length; i++) {
       let tempKeyTextPlane = Number(findKeyByValue(alphabet, plaintext[i]));
       let tempKey = Number(findKeyByValue(alphabet, this._key[i]));
+      console.log(`sumando ${tempKeyTextPlane} + ${tempKey}`);
       let sumKeys = tempKeyTextPlane + tempKey;
 
-      if (sumKeys > alphabetLength) {
+      if (sumKeys >= alphabetLength) {
         sumKeys = sumKeys % alphabetLength;
       }
 
@@ -118,6 +119,9 @@ export class Cipher {
   }
 
   decode(ciphertext) {
+    if (ciphertext.length > this.key.length) {
+      this._key = completeKey(ciphertext, this._key);
+    }
     const arrCipherText = ciphertext.split("");
     const arrKey = this._key.split("");
     const arrNumbersCipherText = [];
@@ -173,6 +177,12 @@ export class Cipher {
 // console.log(cipher.encode("abcdefghij"));
 // console.log(cipher.key.substring(0, 10));
 
-const cipher = new Cipher("lemon");
-console.log(cipher.encode("attackatdawn"));
-console.log(cipher.decode("lxfopvefrnhr"));
+// const cipher = new Cipher("lemon");
+// console.log(cipher.encode("attackatdawn"));
+// console.log(cipher.decode("lxfopvefrnhr"));
+
+// const cipher2 = new Cipher("iamapandabear");
+// console.log(cipher2.encode("iamapandabear"));
+
+const cipher8 = new Cipher("abc");
+console.log(cipher8.decode("iboaqcnecbfcr"));
