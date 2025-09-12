@@ -158,31 +158,31 @@ export class Cipher {
 }
 
 // Test cases
-// const cipher = new Cipher("abcd");
-// console.log(cipher.encode("hello"));
+const cipher = new Cipher("abcd");
+console.log(cipher.encode("hello"));
 
-// const cipher2 = new Cipher("d");
-// console.log(cipher2.encode("iamapandabear"));
+const cipher2 = new Cipher("d");
+console.log(cipher2.encode("iamapandabear"));
 
-// const cipher3 = new Cipher("lemon");
-// console.log(cipher3.encode("attackatdawn"));
+const cipher3 = new Cipher("lemon");
+console.log(cipher3.encode("attackatdawn"));
 
-// const cipher4 = new Cipher("tomato");
-// console.log(cipher4.encode("a"));
+const cipher4 = new Cipher("tomato");
+console.log(cipher4.encode("a"));
 
-// const cipher5 = new Cipher("oz");
-// console.log(cipher5.encode("oo"));
+const cipher5 = new Cipher("oz");
+console.log(cipher5.encode("oo"));
 
-// const cipher = new Cipher();
-// console.log(cipher.encode("abcdefghij"));
-// console.log(cipher.key.substring(0, 10));
+const cipher6 = new Cipher();
+console.log(cipher6.encode("abcdefghij"));
+console.log(cipher6.key.substring(0, 10));
 
-// const cipher = new Cipher("lemon");
-// console.log(cipher.encode("attackatdawn"));
-// console.log(cipher.decode("lxfopvefrnhr"));
+const cipher7 = new Cipher("lemon");
+console.log(cipher7.encode("attackatdawn"));
+console.log(cipher7.decode("lxfopvefrnhr"));
 
-// const cipher2 = new Cipher("iamapandabear");
-// console.log(cipher2.encode("iamapandabear"));
+const cipher8 = new Cipher("iamapandabear");
+console.log(cipher8.encode("iamapandabear"));
 
-const cipher8 = new Cipher("abc");
-console.log(cipher8.decode("iboaqcnecbfcr"));
+const cipher9 = new Cipher("abc");
+console.log(cipher9.decode("iboaqcnecbfcr"));
