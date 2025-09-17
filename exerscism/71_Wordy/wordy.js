@@ -18,17 +18,15 @@ export function isANumber(text) {
 }
 
 export const answer = (text) => {
-  if (!isAQuestion(text)) {
+  if (!hasWhatIsPrefix(text) || !isAQuestion(text)) {
     return false;
   } else {
     const clearText = text.slice(0, text.length - 1);
 
-    return (
-      hasWhatIsPrefix(clearText) &&
-      isANumber(clearText.split(" ").slice(2, 3).join(""))
-    );
+    return isANumber(clearText.split(" ").slice(2, 3).join(""));
   }
 };
 
-const test = answer("What is 5?");
+// Test cases
+const test = answer("at is 5");
 console.log(test);
